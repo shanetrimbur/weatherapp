@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+</head>
+<body>
+  <h1>Weather Data</h1>
+  <div id="weatherData"></div>
+
+  <script>
+    async function fetchWeatherData() {
+      try {
+        const response = await fetch("/weather");
+        const data = await response.json();
+        document.getElementById("weatherData").innerHTML = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById("weatherData").innerText = "Failed to load weather data.";
+      }
+    }
+
+    window.onload = fetchWeatherData;
+  </script>
+</body>
+</html>
